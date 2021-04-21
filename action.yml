@@ -1,0 +1,56 @@
+name: 'GlobalAppTesting'
+description: |
+  Launch an exploratory test with Global App Testing and find issues impacting your users.
+branding:
+  icon: 'user-check'
+  color: 'green'
+inputs:
+  api_key:
+    description: 'GlobalAppTesting API key to request an exploratory test'
+    required: true
+  access_token:
+    description: 'Access Token we will need to export issues to your repository. "repo" permissions are enough.'
+    required: true
+  repository:
+    description: |
+      Point the repository where testers will create issues.
+      Please be aware that your access token will be used to access this repository!
+    required: true
+    default: ${{ github.repository }}
+runs:
+  using: composite
+  steps:
+    - id: read-settings
+      shell: bash
+      run: |
+        content=`cat ./.gat.json`
+        # multiline json handling, see https://github.community/t/set-output-truncates-multiline-strings/16852
+        content="${content//'%'/'%25'}"
+        content="${content//$'\n'/'%0A'}"
+        content="${content//$'\r'/'%0D'}"
+        echo "::set-output name=gatJSON::$content"
+    - id: request-testing
+      shell: bash
+      run: |
+        curl \
+          --silent \
+          --fail \
+          -X POST \
+          -H 'Content-type: application/vnd.api+json' \
+          -H 'X-Api-Key: ${{ inputs.api_key }}' \
+          -d '{
+            "data":{
+              "type":"testRequest",
+              "attributes":{
+                "description":"${{ fromJson(steps.read-settings.outputs.gatJSON).description }}",
+                "vendor":"github",
+                "export_settings":{
+                  "github":{
+                    "repository":"${{ inputs.repository }}",
+                    "access_token":"${{ inputs.access_token }}"
+                  }
+                }
+              }
+            }
+          }' \
+          'https://app.globalapptesting.com/api/v1/flexible_testing/test_requests'
