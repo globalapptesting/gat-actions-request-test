@@ -2,7 +2,7 @@
 
 Launch an exploratory test with Global App Testing and find issues impacting your users.
 
-To get your API key sign up [here](https://go.globalapptesting.com/speak-to-us).
+To get your API key sign up [here](https://go.globalapptesting.com/compare?hs_preview=rCyvmukc-45752713128).
 
 ## Usage
 
