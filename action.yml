@@ -17,6 +17,12 @@ inputs:
       Please be aware that your access token will be used to access this repository!
     required: true
     default: ${{ github.repository }}
+  organization_name:
+    description: |
+      Name of your organization which will be displayed to the testers.
+      If none submitted, the owner of the repository will be used.
+    required: true
+    default: ${{ github.repository_owner }}
 runs:
   using: composite
   steps:
@@ -43,6 +49,8 @@ runs:
               "type":"testRequest",
               "attributes":{
                 "description":"${{ fromJson(steps.read-settings.outputs.gatJSON).description }}",
+                "name":"${{ inputs.organization_name }}",
+                "test_cases":${{ toJson(fromJson(steps.read-settings.outputs.gatJSON).test_cases) }},
                 "vendor":"github",
                 "export_settings":{
                   "github":{

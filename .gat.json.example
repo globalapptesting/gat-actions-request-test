@@ -1,3 +1,52 @@
 {
-  "description": "Go to https://globalapptesting.com and see what you can find!"
+  "description": "Go to https://globalapptesting.com and see what you can find!",
+  "test_cases":[
+    {
+      "name":"Load GlobalAppTesting page",
+      "steps":[
+        {
+          "instruction":"Load https://globalapptesting.com",
+          "expected_result":"Page loads under 1s"
+        }
+      ]
+    },
+    {
+      "name":"GlobalAppTesting <=> Slack integration",
+      "steps":[
+        {
+          "instruction":"Look for the slack button",
+          "expected_result":"Slack button should be visible next to Speak to us button"
+        },
+        {
+          "instruction":"Click the slack button",
+          "expected_result":"Prompt to install GAT slack application is displayed"
+        },
+        {
+          "instruction":"Integrate with any slack channel",
+          "expected_result":"You should see our welcome message on the slack"
+        }
+      ]
+    },
+    {
+      "name":"Mobile registration form test",
+      "steps":[
+        {
+          "instruction":"Go to the GlobalAppTesting page and click Speak to us button",
+          "expected_result":"You should be redirected to the registration form"
+        },
+        {
+          "instruction":"Click on the First Name field",
+          "expected_result":"View scrolls to Company Email Address field and keyboard opens below it"
+        },
+        {
+          "instruction":"Click on the Company Email Address field",
+          "expected_result":"View scrolls to Job Title field and keyboard opens below it"
+        },
+        {
+          "instruction":"Click on the Job Title field",
+          "expected_result":"View scrolls to Speak To Our Team button and keyboard opens below it"
+        }
+      ]
+    }
+  ]
 }

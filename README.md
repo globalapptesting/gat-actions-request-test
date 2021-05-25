@@ -15,7 +15,7 @@ To request the test you need to:
 # required to get .gat.json file from your repository
 - uses: actions/checkout@v2
 - name: Test with GAT
-  uses: GlobalAppTesting/gat-actions-request-test@v1
+  uses: GlobalAppTesting/gat-actions-request-test@v1.1
   with:
     api_key: ${{ secrets.GAT_API_KEY }}
     access_token: ${{ secrets.MY_NEW_ACCESS_TOKEN }}
@@ -24,7 +24,8 @@ To request the test you need to:
 ```js
 // .gat.json
 {
-  "description": "Go to https://globalapptesting.com and see what you can find!"
+  "description": "Go to https://globalapptesting.com and see what you can find!",
+  "test_cases": []
 }
 ```
 
@@ -63,9 +64,11 @@ More examples can be find [here](https://github.com/GlobalAppTesting/gat-actions
 - `api_key` - **required**. GAT API key. Get one [here](https://go.globalapptesting.com/speak-to-us).
 - `access_token` - **required**. Github access token we will use to export issues. "repo" permissions are enough.
 - `repository` - **optional**. Repository where our testers will report found issues.
+- `organization_name` - **optional**. Name of your organization to display for testers. If none given owner of the repository is used.
 
 ### Outputs
 - None
 
 ### Reads fields from config file inside your repository's `.gat.json`:
 - `description` - **required**. Can't be empty.
+- `test_cases` - **optional**. Array of test case instructions. For sample format see `.gat.json.example`.
