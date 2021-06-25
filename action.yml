@@ -23,6 +23,14 @@ inputs:
       If none submitted, the owner of the repository will be used.
     required: true
     default: ${{ github.repository_owner }}
+  wait_for_finished_testing:
+    description: |
+      Only useful if using this action with `on: pull_request` trigger!
+      Set to true to mark your PR as pending until results from GAT testers will come back.
+      GAT will mark your PR(using your access token) green when tests will complete successfully.
+      If there were any test case failures GAT will open them as issues and mark your PR red until next testing is requested.
+    required: true
+    default: false
 runs:
   using: composite
   steps:
@@ -55,7 +63,9 @@ runs:
                 "export_settings":{
                   "github":{
                     "repository":"${{ inputs.repository }}",
-                    "access_token":"${{ inputs.access_token }}"
+                    "access_token":"${{ inputs.access_token }}",
+                    "branch_name":"${{ github.head_ref }}",
+                    "wait_for_finished_testing":${{ inputs.wait_for_finished_testing }}
                   }
                 }
               }

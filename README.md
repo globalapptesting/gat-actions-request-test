@@ -65,6 +65,7 @@ More examples can be find [here](https://github.com/GlobalAppTesting/gat-actions
 - `access_token` - **required**. Github access token we will use to export issues. "repo" permissions are enough.
 - `repository` - **optional**. Repository where our testers will report found issues.
 - `organization_name` - **optional**. Name of your organization to display for testers. If none given owner of the repository is used.
+- `wait_for_finished_testing` - **optional**. **Only useful if using this action with `on: pull_request` trigger!**. Set to true to mark your PR as pending until results from GAT testers will come back. GAT will mark your PR(using your access token) green when tests will complete successfully. If there were any test case failures GAT will open them as issues and mark your PR red until next testing is requested.
 
 ### Outputs
 - None
