@@ -15,7 +15,7 @@ To request the test you need to:
 # required to get .gat.json file from your repository
 - uses: actions/checkout@v2
 - name: Test with GAT
-  uses: GlobalAppTesting/gat-actions-request-test@v1.1
+  uses: GlobalAppTesting/gat-actions-request-test@v1.2
   with:
     api_key: ${{ secrets.GAT_API_KEY }}
     access_token: ${{ secrets.MY_NEW_ACCESS_TOKEN }}
