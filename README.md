@@ -15,7 +15,7 @@ To request the test you need to:
 # required to get .gat.json file from your repository
 - uses: actions/checkout@v2
 - name: Test with GAT
-  uses: GlobalAppTesting/gat-actions-request-test@v1.2
+  uses: GlobalAppTesting/gat-actions-request-test@v1.3
   with:
     api_key: ${{ secrets.GAT_API_KEY }}
     access_token: ${{ secrets.MY_NEW_ACCESS_TOKEN }}
@@ -66,6 +66,7 @@ More examples can be find [here](https://github.com/GlobalAppTesting/gat-actions
 - `repository` - **optional**. Repository where our testers will report found issues.
 - `organization_name` - **optional**. Name of your organization to display for testers. If none given owner of the repository is used.
 - `wait_for_finished_testing` - **optional**. **Only useful if using this action with `on: pull_request` trigger!**. Set to true to mark your PR as pending until results from GAT testers will come back. GAT will mark your PR(using your access token) green when tests will complete successfully. If there were any test case failures GAT will open them as issues and mark your PR red until next testing is requested.
+- `issue_prefix` - **optional**. Prefix which will be used in the titles of reported issues. For example, `"GlobalAppTesting"` will result in issue titled like `"[GlobalAppTesting] <issue title>"`. Useful in monorepos(set `issue_prefix` based on PR title or branch, see examples section) to filter issues per package. Can also be used for simple filtering the issues reported by GAT.
 
 ### Outputs
 - None

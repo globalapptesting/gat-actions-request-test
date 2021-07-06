@@ -31,6 +31,13 @@ inputs:
       If there were any test case failures GAT will open them as issues and mark your PR red until next testing is requested.
     required: true
     default: false
+  issue_prefix:
+    description: |
+      Prefix which will be used in the titles of reported issues.
+      For example, "GlobalAppTesting" will result in issue titled like "[GlobalAppTesting] <issue title>".
+      Useful in monorepos(set issue_prefix based on PR title or branch, see examples section in README) to filter issues per package.
+      Can also be used for simple filtering the issues reported by GAT.
+    required: false
 runs:
   using: composite
   steps:
@@ -65,7 +72,8 @@ runs:
                     "repository":"${{ inputs.repository }}",
                     "access_token":"${{ inputs.access_token }}",
                     "branch_name":"${{ github.head_ref }}",
-                    "wait_for_finished_testing":${{ inputs.wait_for_finished_testing }}
+                    "wait_for_finished_testing":${{ inputs.wait_for_finished_testing }},
+                    "issue_prefix":"${{ inputs.issue_prefix }}"
                   }
                 }
               }
