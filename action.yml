@@ -41,39 +41,32 @@ inputs:
 runs:
   using: composite
   steps:
-    - id: read-settings
-      shell: bash
-      run: |
-        content=`cat ./.gat.json`
-        # multiline json handling, see https://github.community/t/set-output-truncates-multiline-strings/16852
-        content="${content//'%'/'%25'}"
-        content="${content//$'\n'/'%0A'}"
-        content="${content//$'\r'/'%0D'}"
-        echo "::set-output name=gatJSON::$content"
     - id: request-testing
       shell: bash
       run: |
+        desc=$(echo `jq -cM '.description' < .gat.json`)
+        test_cases=$(echo `jq -cM '.test_cases' < .gat.json`)
         curl \
           --silent \
           --fail \
           -X POST \
           -H 'Content-type: application/vnd.api+json' \
           -H 'X-Api-Key: ${{ inputs.api_key }}' \
-          -d '{
-            "data":{
-              "type":"testRequest",
-              "attributes":{
-                "description":"${{ fromJson(steps.read-settings.outputs.gatJSON).description }}",
-                "name":"${{ inputs.organization_name }}",
-                "test_cases":${{ toJson(fromJson(steps.read-settings.outputs.gatJSON).test_cases) }},
-                "vendor":"github",
-                "export_settings":{
-                  "github":{
-                    "repository":"${{ inputs.repository }}",
-                    "access_token":"${{ inputs.access_token }}",
-                    "branch_name":"${{ github.head_ref }}",
-                    "wait_for_finished_testing":${{ inputs.wait_for_finished_testing }},
-                    "issue_prefix":"${{ inputs.issue_prefix }}"
+          -d "{
+            \"data\":{
+              \"type\":\"testRequest\",
+              \"attributes\":{
+                \"description\":$desc,
+                \"name\":\"${{ inputs.organization_name }}\",
+                \"test_cases\":$test_cases,
+                \"vendor\":\"github\",
+                \"export_settings\":{
+                  \"github\":{
+                    \"repository\":\"${{ inputs.repository }}\",
+                    \"access_token\":\"${{ inputs.access_token }}\",
+                    \"branch_name\":\"${{ github.head_ref }}\",
+                    \"wait_for_finished_testing\":${{ inputs.wait_for_finished_testing }},
+                    \"issue_prefix\":\"${{ inputs.issue_prefix }}\"
                   }
                 }
               }
