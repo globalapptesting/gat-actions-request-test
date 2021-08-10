@@ -64,7 +64,7 @@ runs:
                   \"github\":{
                     \"repository\":\"${{ inputs.repository }}\",
                     \"access_token\":\"${{ inputs.access_token }}\",
-                    \"branch_name\":\"${{ github.head_ref }}\",
+                    \"pr_number\":${{ toJSON(github.event.pull_request.number) }},
                     \"wait_for_finished_testing\":${{ inputs.wait_for_finished_testing }},
                     \"issue_prefix\":\"${{ inputs.issue_prefix }}\"
                   }
