@@ -1,5 +1,5 @@
 {
-  "description": "Go to https://globalapptesting.com and see what you can find!",
+  "description": "GlobalAppTesting is a best-in-class, remote on-demand QA crowdtesting solution.",
   "test_cases":[
     {
       "name":"Load GlobalAppTesting page",

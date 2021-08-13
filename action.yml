@@ -23,6 +23,10 @@ inputs:
       If none submitted, the owner of the repository will be used.
     required: true
     default: ${{ github.repository_owner }}
+  application_url:
+    description: |
+      URL under which your application will be available for testing. If that's more convenient for you, you can also put the URL directly in the description, although this way might sooner or later get deprecated. This field is now the advised way for pointing our testers to your application.
+    required: false
   wait_for_finished_testing:
     description: |
       Only useful if using this action with `on: pull_request` trigger!
@@ -64,6 +68,7 @@ runs:
               \"attributes\":{
                 \"description\":$desc,
                 \"name\":\"${{ inputs.organization_name }}\",
+                \"application_url\":\"${{ inputs.application_url }}\",
                 \"test_cases\":$test_cases,
                 \"vendor\":\"github\",
                 \"export_settings\":{

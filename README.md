@@ -19,12 +19,13 @@ To request the test you need to:
   with:
     api_key: ${{ secrets.GAT_API_KEY }}
     access_token: ${{ secrets.MY_NEW_ACCESS_TOKEN }}
+    application_url: https://yourapplicationurl.com
 ```
 
 ```js
 // .gat.json
 {
-  "description": "Go to https://globalapptesting.com and see what you can find!",
+  "description": "Your company's description and additional context for testers",
   "test_cases": []
 }
 ```
@@ -65,6 +66,7 @@ More examples can be find [here](https://github.com/GlobalAppTesting/gat-actions
 - `access_token` - **required**. Github access token we will use to export issues. "repo" permissions are enough.
 - `repository` - **optional**. Repository where our testers will report found issues.
 - `organization_name` - **optional**. Name of your organization to display for testers. If none given owner of the repository is used.
+- `application_url` - **optional**. URL under which your application will be available for testing. If that's more convenient for you, you can also put the URL directly in the description, although this way might sooner or later get deprecated. This field is now the advised way for pointing our testers to your application.
 - `wait_for_finished_testing` - **optional**. **Only useful if using this action with `on: pull_request` trigger!**. Set to true to mark your PR as pending until results from GAT testers will come back. GAT will mark your PR(using your access token) green when tests will complete successfully. If there were any test case failures GAT will open them as issues and mark your PR red until next testing is requested.
 - `pr_status_context` - **optional**. **Only useful if using this action with `on: pull_request trigger!**. Github Commit Status context which will be displayed as one of the checks on your Pull Request. Currently we support 3 checks - pending(our testers has received your request and now they're testing), success(test has finished, testers found 0 issues) and failure(testers have found issues in your app). If none given, "GlobalAppTesting" will be use as default context.
 - `issue_prefix` - **optional**. Prefix which will be used in the titles of reported issues. For example, `"GlobalAppTesting"` will result in issue titled like `"[GlobalAppTesting] <issue title>"`. Useful in monorepos(set `issue_prefix` based on PR title or branch, see examples section) to filter issues per package. Can also be used for simple filtering the issues reported by GAT.
