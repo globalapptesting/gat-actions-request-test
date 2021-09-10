@@ -11,6 +11,11 @@ inputs:
   access_token:
     description: 'Access Token we will need to export issues to your repository. "repo" permissions are enough.'
     required: true
+  dry_run:
+    description: |
+      Try out the action without actually launching the test. Dry run will validate structure of your inputs and access to your repository.
+    required: false
+    default: false
   repository:
     description: |
       Point the repository where testers will create issues.
@@ -56,6 +61,14 @@ runs:
       run: |
         desc=$(echo `jq -cM '.description' < .gat.json`)
         test_cases=$(echo `jq -cM '.test_cases' < .gat.json`)
+        test_run_path="https://app.globalapptesting.com/api/v1/flexible_testing/test_requests"
+        dry_run_path=${test_run_path}/dry_run
+        if ${{ inputs.dry_run }}; then
+          api_url=$dry_run_path
+        else
+          api_url=$test_run_path
+        fi
+
         curl \
           --silent \
           --fail \
@@ -83,5 +96,5 @@ runs:
                 }
               }
             }
-          }' \
-          'https://app.globalapptesting.com/api/v1/flexible_testing/test_requests'
+          }" \
+          $api_url

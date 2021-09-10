@@ -64,6 +64,7 @@ More examples can be find [here](https://github.com/GlobalAppTesting/gat-actions
 ### Inputs
 - `api_key` - **required**. GAT API key. Get one [here](https://go.globalapptesting.com/speak-to-us).
 - `access_token` - **required**. Github access token we will use to export issues. "repo" permissions are enough.
+- `dry_run` - **optional**. Try out the action **without actually launching the test**. Dry run will validate structure of your inputs and access to your repository. **default: false**(so you WILL launch a real test!)
 - `repository` - **optional**. Repository where our testers will report found issues.
 - `organization_name` - **optional**. Name of your organization to display for testers. If none given owner of the repository is used.
 - `application_url` - **optional**. URL under which your application will be available for testing. If that's more convenient for you, you can also put the URL directly in the description, although this way might sooner or later get deprecated. This field is now the advised way for pointing our testers to your application.
