@@ -1,6 +1,6 @@
 # GlobalAppTesting - Crowdtesting Github Action
 
-Launch an exploratory test with Global App Testing and find issues impacting your users.
+Launch a test with real testers on real devices, and quickly uncover the highest impact issues.
 
 You can generate your API key [here](https://app.globalapptesting.com/organization-settings/customer-api-key) or sign up [here](https://go.globalapptesting.com/early-access-exploratory-testing-test-execution).
 
