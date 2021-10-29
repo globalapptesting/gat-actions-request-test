@@ -1,0 +1,21 @@
+name: Test with GlobalAppTesting
+
+# Controls when the action will run.
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  test-with-gat:
+    runs-on: ubuntu-latest
+    steps:
+      # required to get .gat.json file from your repository
+      - uses: actions/checkout@v2
+      - name: Test with GAT
+        uses: GlobalAppTesting/gat-actions-request-test@v2.2
+        with:
+          api_key: ${{ secrets.GAT_API_KEY }}
+          access_token: ${{ secrets.GAT_GH_ACCESS_TOKEN }}
+          application_url: https://globalapptesting.com
+          wait_for_finished_testing: true
+          dry_run: false
