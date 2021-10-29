@@ -1,4 +1,4 @@
-# GlobalAppTesting - Crowdtesting Github Action
+# GlobalAppTesting -  Crowdtesting Github Action
 
 Launch a test with real testers on real devices, and quickly uncover the highest impact issues.
 
