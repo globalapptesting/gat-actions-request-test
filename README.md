@@ -2,7 +2,9 @@
 
 Launch a test with real testers on real devices, and quickly uncover the highest impact issues.
 
-You can generate your API key [here](https://app.globalapptesting.com/organization-settings/customer-api-key) or sign up [here](https://go.globalapptesting.com/early-access-exploratory-testing-test-execution).
+Kickstart your GAT actions integration [here](https://github.com/GlobalAppTesting/gat-action-kickstarter) or discover more ways to use it [here](https://github.com/GlobalAppTesting/gat-actions-examples). 
+
+You will need an API key to complete the integration set up. Generate one [here](https://app.globalapptesting.com/organization-settings/customer-api-key) or sign up to GAT [here](https://go.globalapptesting.com/early-access-exploratory-testing-test-execution).
 
 ## Usage
 
