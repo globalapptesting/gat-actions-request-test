@@ -1,4 +1,8 @@
-# GlobalAppTesting - Crowdtesting Github Action
+# PROJECT DISCONTINUED
+
+This project has been discontinued. It will be available as an archive till 22nd march after which it will be removed. If you're considering using this or have used it in the past and would like to continue please contact [developers@globalapptesting.com](mailto:developers@globalapptesting.com)
+
+## GlobalAppTesting - Crowdtesting Github Action
 
 Launch a test with real testers on real devices, and quickly uncover the highest impact issues.
 
